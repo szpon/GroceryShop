@@ -1,3 +1,3 @@
 # GroceryShop
 Simple Grocery Shop Management JavaFx Application
-<img src="AppScreenshots/sales.png>
+<img src="AppScreenshots/sales.png">
