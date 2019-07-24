@@ -1,5 +1,5 @@
  #Grocery Shop
- Application works with database created in Microsoft SQL Server
+ Application connected with database created in Microsoft SQL Server
 <br><br>
 <b>"Shop Page"<b>
   <br>
