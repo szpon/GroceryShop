@@ -1,5 +1,5 @@
  #Grocery Shop
- Application connected with database created in Microsoft SQL Server. Products, Customers, Suppliers and Sales data can be saved in txt file.
+ Application connected with database created in Microsoft SQL Server. Products, Customers, Suppliers and Sales data can be saved in *.txt file.
 <br><br>
 <b>"Shop Page"<b>
   <br>
