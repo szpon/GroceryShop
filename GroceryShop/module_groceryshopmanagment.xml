@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_groceryshopmanagment" default="compile.module.groceryshopmanagment">
+  <dirname property="module.groceryshopmanagment.basedir" file="${ant.file.module_groceryshopmanagment}"/>
+  
+  <property name="module.jdk.home.groceryshopmanagment" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.groceryshopmanagment" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.groceryshopmanagment" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.groceryshopmanagment" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="groceryshopmanagment.output.dir" value="${module.groceryshopmanagment.basedir}/out/production/GroceryShopManagment"/>
+  <property name="groceryshopmanagment.testoutput.dir" value="${module.groceryshopmanagment.basedir}/out/test/GroceryShopManagment"/>
+  
+  <path id="groceryshopmanagment.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="groceryshopmanagment.module.production.classpath">
+    <path refid="${module.jdk.classpath.groceryshopmanagment}"/>
+    <path refid="library.mssql-jdbc-7.2.2.jre8.classpath"/>
+  </path>
+  
+  <path id="groceryshopmanagment.runtime.production.module.classpath">
+    <pathelement location="${groceryshopmanagment.output.dir}"/>
+    <path refid="library.mssql-jdbc-7.2.2.jre8.classpath"/>
+  </path>
+  
+  <path id="groceryshopmanagment.module.classpath">
+    <path refid="${module.jdk.classpath.groceryshopmanagment}"/>
+    <pathelement location="${groceryshopmanagment.output.dir}"/>
+    <path refid="library.mssql-jdbc-7.2.2.jre8.classpath"/>
+  </path>
+  
+  <path id="groceryshopmanagment.runtime.module.classpath">
+    <pathelement location="${groceryshopmanagment.testoutput.dir}"/>
+    <pathelement location="${groceryshopmanagment.output.dir}"/>
+    <path refid="library.mssql-jdbc-7.2.2.jre8.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.groceryshopmanagment">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.groceryshopmanagment">
+    <patternset refid="excluded.from.module.groceryshopmanagment"/>
+  </patternset>
+  
+  <path id="groceryshopmanagment.module.sourcepath">
+    <dirset dir="${module.groceryshopmanagment.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.groceryshopmanagment" depends="compile.module.groceryshopmanagment.production,compile.module.groceryshopmanagment.tests" description="Compile module GroceryShopManagment"/>
+  
+  <target name="compile.module.groceryshopmanagment.production" depends="register.custom.compilers" description="Compile module GroceryShopManagment; production classes">
+    <mkdir dir="${groceryshopmanagment.output.dir}"/>
+    <javac2 destdir="${groceryshopmanagment.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.groceryshopmanagment}/javac">
+      <compilerarg line="${compiler.args.groceryshopmanagment}"/>
+      <bootclasspath refid="groceryshopmanagment.module.bootclasspath"/>
+      <classpath refid="groceryshopmanagment.module.production.classpath"/>
+      <src refid="groceryshopmanagment.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.groceryshopmanagment"/>
+    </javac2>
+    
+    <copy todir="${groceryshopmanagment.output.dir}">
+      <fileset dir="${module.groceryshopmanagment.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.groceryshopmanagment.tests" depends="register.custom.compilers,compile.module.groceryshopmanagment.production" description="compile module GroceryShopManagment; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.groceryshopmanagment" description="cleanup module">
+    <delete dir="${groceryshopmanagment.output.dir}"/>
+    <delete dir="${groceryshopmanagment.testoutput.dir}"/>
+  </target>
+</project>
